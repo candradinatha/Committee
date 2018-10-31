@@ -35,6 +35,11 @@ class LoginActivity : AppCompatActivity() {
                 showLoading()
                 authenticateUser(edt_email.text.toString(), edt_pass.text.toString())}
             }
+
+        tv_register.setOnClickListener {
+            intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun showLoading() {

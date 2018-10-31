@@ -5,7 +5,7 @@
     android:background="@drawable/gradient"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -21,19 +21,23 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:src="@drawable/logo" />
+        <EditText
+            android:padding="8dp"
+            android:id="@+id/edt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="name"
+            android:background="@drawable/rounded"/>
 
         <EditText
+            android:layout_marginTop="16dp"
             android:padding="8dp"
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="email"
-            android:background="@drawable/rounded"/>
+            android:background="@drawable/rounded"
+            android:inputType="textEmailAddress"/>
 
         <EditText
             android:layout_marginTop="16dp"
@@ -45,13 +49,23 @@
             android:background="@drawable/rounded"
             android:inputType="textPassword"/>
 
+        <EditText
+            android:layout_marginTop="16dp"
+            android:padding="8dp"
+            android:id="@+id/edt_repass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="repeat password"
+            android:background="@drawable/rounded"
+            android:inputType="textPassword"/>
+
         <Button
-            android:id="@+id/btn_login_submit"
+            android:id="@+id/btn_register_submit"
             android:background="@drawable/rounded_button"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"/>
+            android:text="Register"/>
 
         <LinearLayout
             android:layout_marginTop="16dp"
@@ -75,7 +89,7 @@
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="or"
+                    android:text="o"
                     android:textColor="@color/colorAccent"/>
 
             </LinearLayout>
@@ -87,16 +101,6 @@
                 android:layout_height="1dp"
                 android:background="@color/colorAccent"/>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_register"
-            android:textSize="18dp"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
-            android:gravity="center"
-            android:text="Register"/>
 
     </LinearLayout>
 
