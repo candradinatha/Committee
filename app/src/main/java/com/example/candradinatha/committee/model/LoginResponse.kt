@@ -1,5 +1,14 @@
 package com.example.candradinatha.committee.model
+import com.google.gson.annotations.SerializedName
 
-class LoginResponse(val accessToken: String = "",
-                    val admin: Int = 0,
-                    val status: Boolean = false)
+data class LoginResponse(
+
+	@field:SerializedName("access_token")
+	val accessToken: String? = null,
+
+	@field:SerializedName("admin")
+	val admin: Int? = null,
+
+	@field:SerializedName("status")
+	val status: Boolean = false
+)

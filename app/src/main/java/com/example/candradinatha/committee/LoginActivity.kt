@@ -1,5 +1,6 @@
 package com.example.candradinatha.committee
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -22,6 +23,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val preference = App.getInstance().getSharedPreferences("login", Context.MODE_PRIVATE)
+
 
         mService = ApiClient.client!!.create(ApiInterface::class.java)
         progressBar = progress_bar
@@ -66,13 +70,22 @@ class LoginActivity : AppCompatActivity() {
                         else{
                             if (response.body()!!.admin == 1) {
                                 hideLoading()
+                                getSharedPreferences("login", Context.MODE_PRIVATE)
+                                        .edit()
+                                        .putString("api_token_admin", response.body()!!.accessToken)
+                                        .apply()
+
                                 intent = Intent(this@LoginActivity, AdminMainActivity::class.java)
-                                Toast.makeText(this@LoginActivity, "Login Admin", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@LoginActivity, "${response.body()?.accessToken}", Toast.LENGTH_SHORT).show()
                                 startActivity(intent)
                             } else {
                                 hideLoading()
+                                getSharedPreferences("login", Context.MODE_PRIVATE)
+                                        .edit()
+                                        .putString("api_token", response.body()!!.accessToken)
+                                        .apply()
                                 intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                Toast.makeText(this@LoginActivity, "Login User", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@LoginActivity, "${response.body()?.accessToken}", Toast.LENGTH_SHORT).show()
                                 startActivity(intent)
                             }
                         }

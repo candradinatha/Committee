@@ -69,6 +69,7 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.makeText(this@RegisterActivity, "Register Berhasil", Toast.LENGTH_SHORT).show()
                             startActivity(intent)
                         } else
+                            hideLoading()
                             Toast.makeText(this@RegisterActivity, "Register Gagal", Toast.LENGTH_SHORT).show()
                     }
 

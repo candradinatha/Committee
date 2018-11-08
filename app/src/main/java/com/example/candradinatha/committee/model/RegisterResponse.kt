@@ -1,4 +1,8 @@
 package com.example.candradinatha.committee.model
 
-class RegisterResponse(val msg: String = "",
-                            val status: Boolean = false)
+import com.google.gson.annotations.SerializedName
+
+data class RegisterResponse(
+        @field:SerializedName("status")
+        val status: Boolean = false
+)

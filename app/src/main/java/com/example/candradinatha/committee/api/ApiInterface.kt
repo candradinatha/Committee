@@ -1,10 +1,12 @@
 package com.example.candradinatha.committee.api
 
+import com.example.candradinatha.committee.model.DetailUserResponse
 import com.example.candradinatha.committee.model.LoginResponse
 import com.example.candradinatha.committee.model.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiInterface {
@@ -15,4 +17,7 @@ interface ApiInterface {
     @FormUrlEncoded
     @POST("register")
     fun register(@Field("name") name:String, @Field("email") email: String, @Field("password") password: String): Call<RegisterResponse>
+
+    @GET("details")
+    fun getDetail(): Call<DetailUserResponse>
 }
