@@ -11,7 +11,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiClient {
     companion object {
-        const val baseUrl: String = "http://172.17.100.2:8000/api/"
+        const val baseUrl: String = "http://172.17.100.2/Progmob/index.php/"
+
+//        10.0.2.2
+//        172.17.100.2
         var retrofit: Retrofit? = null
 
         val c = OkHttpClient.Builder()

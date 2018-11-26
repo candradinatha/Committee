@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.example.candradinatha.committee.api.ApiClient
 import com.example.candradinatha.committee.api.ApiInterface
 import com.example.candradinatha.committee.model.LoginResponse
+import com.example.candradinatha.committee.view.admin.AdminMainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +26,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val preference = App.getInstance().getSharedPreferences("login", Context.MODE_PRIVATE)
+        if (preference.contains("api_token")){
+            intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
 
 
         mService = ApiClient.client!!.create(ApiInterface::class.java)
