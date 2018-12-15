@@ -4,7 +4,7 @@
     <item
         android:id="@+id/committee"
         android:enabled="true"
-        android:title="Committee"
+        android:title="Kegiatan"
         android:icon="@drawable/ic_committee"
         app:showAsAction="ifRoom"/>
 
@@ -12,8 +12,15 @@
         android:id="@+id/add_committee"
         android:enabled="true"
         android:icon="@drawable/ic_add_committee"
-        android:title="Create New"
+        android:title="Tambah Kegiatan"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/approve"
+        android:enabled="true"
+        android:title="Approve"
+        android:icon="@drawable/ic_approve"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/admin_profile"

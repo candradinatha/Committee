@@ -16,228 +16,142 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/placeholder"/>
+            android:src="@drawable/placeholder" />
 
-        <Button
+        <ImageButton
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
             android:id="@+id/btn_select_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="select image" />
+            android:src="@drawable/ic_camera" />
 
-        <EditText
-            android:padding="8dp"
-            android:id="@+id/edt_nama_kegiatan"
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="nama kegiatan"
-            android:background="@drawable/rounded"/>
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_nama_kegiatan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="nama kegiatan"
+                android:padding="8dp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <RelativeLayout
             android:layout_marginTop="16dp"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <TextView
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:padding="8dp"
+                        android:id="@+id/tv_tanggal_kegiatan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="pilih tanggal kegiatan" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageButton
+                android:layout_marginTop="6dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:id="@+id/btn_tanggal_kegiatan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tanggal Kegiatan : " />
+                android:src="@drawable/ic_date" />
 
-            <TextView
-                android:id="@+id/tv_tanggal_kegiatan"
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputEditText
+                    android:padding="8dp"
+                    android:id="@+id/tv_tanggal_rapat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="pilih tanggal rapat perdana" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageButton
+                android:layout_marginTop="6dp"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:id="@+id/btn_rapat_perdana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:src="@drawable/ic_date" />
 
-        </LinearLayout>
+        </RelativeLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:inputType="textMultiLine"
+                android:gravity="top|left"
+                android:lines="6"
+                android:padding="8dp"
+                android:id="@+id/edt_deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:hint="deskripsi" />
+
+        </android.support.design.widget.TextInputLayout>
+
 
         <Button
-            android:id="@+id/btn_tanggal_kegiatan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="pilih" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tanggal Kegiatan : " />
-
-            <TextView
-                android:id="@+id/tv_tanggal_rapat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_rapat_perdana"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="pilih" />
-
-
-        <EditText
-            android:id="@+id/edt_deskripsi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="deskripsi" />
-
-        <Button
-            android:id="@+id/btn_submit"
+            android:layout_gravity="center"
+            android:id="@+id/btn_save_committee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Tambah Sie" />
 
-        <LinearLayout
+        <Button
             android:visibility="gone"
-            android:id="@+id/list_sie"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:id="@+id/btn_add_new_sie"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="16dp"
+            android:text="Tambah Sie" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list_sie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/cb_sekre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sie Sekretariat"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:visibility="gone"
-                    android:id="@+id/list_input_sekre"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <EditText
-                        android:id="@+id/edt_kuota_sekre"
-                        android:layout_marginBottom="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:background="@drawable/rounded"
-                        android:hint="kuota"/>
-                    <EditText
-                        android:id="@+id/edt_koor_sekre"
-                        android:layout_marginBottom="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:background="@drawable/rounded"
-                        android:hint="nama koor"/>
-                    <EditText
-                        android:id="@+id/edt_line_sekre"
-                        android:layout_marginBottom="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:background="@drawable/rounded"
-                        android:hint="id line koor"/>
-                    <EditText
-                        android:id="@+id/edt_job_sekre"
-                        android:layout_marginBottom="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:background="@drawable/rounded"
-                        android:hint="job desc"/>
-
-                    <Button
-                        android:id="@+id/btn_submit_sekre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="add sie"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/cb_pubdok"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sie Pubdok"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:visibility="gone"
-                    android:id="@+id/list_input_pubdok"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <EditText
-                        android:id="@+id/edt_kuota_pubdok"
-                        android:layout_marginBottom="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:background="@drawable/rounded"
-                        android:hint="kuota"/>
-                    <EditText
-                        android:id="@+id/edt_koor_pubdok"
-                        android:layout_marginBottom="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:background="@drawable/rounded"
-                        android:hint="nama koor"/>
-                    <EditText
-                        android:id="@+id/edt_line_pubdok"
-                        android:layout_marginBottom="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:background="@drawable/rounded"
-                        android:hint="id line koor"/>
-                    <EditText
-                        android:id="@+id/edt_job_pubdok"
-                        android:layout_marginBottom="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:background="@drawable/rounded"
-                        android:hint="job desc"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        <Button
+            android:visibility="gone"
+            android:id="@+id/btn_save_all"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="simpan"/>
 
     </LinearLayout>
 

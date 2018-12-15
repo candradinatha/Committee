@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.user.mycommittee.MyCommitteeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.design.widget.TabLayout
+        app:tabTextColor="@android:color/white"
+        app:tabSelectedTextColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        app:tabIndicatorColor="@color/colorSecondaryText"
+        app:tabRippleColor="@color/colorSecondaryText"
+        android:id="@+id/my_committee_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="fixed"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/my_committee_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/my_committee_tab"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/gradient"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
@@ -21,43 +20,98 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <EditText
-            android:padding="8dp"
-            android:id="@+id/edt_name"
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="name"
-            android:background="@drawable/rounded"/>
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:layout_marginTop="16dp"
-            android:padding="8dp"
-            android:id="@+id/edt_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="email"
-            android:background="@drawable/rounded"
-            android:inputType="textEmailAddress"/>
+            <android.support.design.widget.TextInputEditText
+                android:padding="8dp"
+                android:id="@+id/edt_nim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="nim"
+                android:inputType="number"/>
 
-        <EditText
-            android:layout_marginTop="16dp"
-            android:padding="8dp"
-            android:id="@+id/edt_pass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="password"
-            android:background="@drawable/rounded"
-            android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
             android:layout_marginTop="16dp"
-            android:padding="8dp"
-            android:id="@+id/edt_repass"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="repeat password"
-            android:background="@drawable/rounded"
-            android:inputType="textPassword"/>
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:padding="8dp"
+                android:id="@+id/edt_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="nama"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:padding="8dp"
+                android:id="@+id/edt_angkatan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="angkatan"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:padding="8dp"
+                android:id="@+id/edt_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="username" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:padding="8dp"
+                android:id="@+id/edt_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="password"
+                android:inputType="textPassword"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:padding="8dp"
+                android:id="@+id/edt_repass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="repeat password"
+                android:inputType="textPassword"/>
+
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/btn_register_submit"

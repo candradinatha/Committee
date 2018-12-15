@@ -24,9 +24,9 @@ class CommitteePagerAdapter(fm: FragmentManager?): FragmentStatePagerAdapter(fm)
 
     override fun getPageTitle(position: Int): CharSequence {
         return  when (position) {
-            0 -> "Prev Committee"
+            0 -> "Non Aktif"
             else -> {
-                return "Next Committee"
+                return "Aktif"
             }
         }
     }

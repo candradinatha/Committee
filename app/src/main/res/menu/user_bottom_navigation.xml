@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/user_committee"
+        android:enabled="true"
+        android:title="Kegiatan"
+        android:icon="@drawable/ic_committee"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/user_my_committee"
+        android:enabled="true"
+        android:title="Kegiatanku"
+        android:icon="@drawable/ic_committee"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/notification"
+        android:enabled="true"
+        android:title="Pemberitahuan"
+        android:icon="@drawable/ic_notification"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/user_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_user"
+        android:title="Profile"
+        app:showAsAction="ifRoom" />
+</menu>

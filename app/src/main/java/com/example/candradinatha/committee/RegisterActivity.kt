@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -24,6 +25,8 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        supportActionBar?.title = "Register"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mService = ApiClient.client!!.create(ApiInterface::class.java)
         progressBar = progress_bar
@@ -31,8 +34,8 @@ class RegisterActivity : AppCompatActivity() {
         btn_register_submit.setOnClickListener {
             if (edt_name.text.toString() == "")
                 edt_name.setError("name field is required")
-            else if (edt_email.text.toString() == "")
-                edt_email.setError("email field is required")
+            else if (edt_nim.text.toString() == "")
+                edt_nim.setError("email field is required")
             else if (edt_pass.text.toString() == "")
                 edt_pass.setError("password field is required")
             else if (edt_repass.text.toString() == "")
@@ -41,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
                 edt_repass.setError("pass doesn't match")
             } else {
                 showLoading()
-                createNewUser(edt_name.text.toString(), edt_email.text.toString(), edt_pass.text.toString())
+                createNewUser(edt_name.text.toString(), edt_nim.text.toString(), edt_pass.text.toString())
             }
         }
     }
@@ -63,7 +66,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
 
                     override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
-                        if (response.body()!!.status) {
+                        if (response.body()!!.message == "Registered") {
                             hideLoading()
                             intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                             Toast.makeText(this@RegisterActivity, "Register Berhasil", Toast.LENGTH_SHORT).show()
@@ -74,5 +77,14 @@ class RegisterActivity : AppCompatActivity() {
                     }
 
                 })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return if (item?.itemId == android.R.id.home) {
+            finish()
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
     }
 }

@@ -11,6 +11,7 @@ import com.example.candradinatha.committee.api.ApiClient
 import com.example.candradinatha.committee.api.ApiInterface
 import com.example.candradinatha.committee.model.LoginResponse
 import com.example.candradinatha.committee.view.admin.AdminMainActivity
+import com.example.candradinatha.committee.view.user.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,23 +27,27 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val preference = App.getInstance().getSharedPreferences("login", Context.MODE_PRIVATE)
-        if (preference.contains("api_token")){
-            intent = Intent(this,MainActivity::class.java)
+        if (preference.contains("admin_token")){
+            intent = Intent(this, AdminMainActivity::class.java)
+            startActivity(intent)
+        } else if (preference.contains("api_token")) {
+            intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
 
 
         mService = ApiClient.client!!.create(ApiInterface::class.java)
         progressBar = progress_bar
 
         btn_login_submit.setOnClickListener {
-            if (edt_email.text.toString() == ""){
-                edt_email.setError("email field is required")
-            } else if (edt_pass.text.toString() == "") {
-                edt_pass.setError("password field is required")
+            if (edt_login_username.text.toString() == ""){
+                edt_login_username.setError("email field is required")
+            } else if (edt_login_pass.text.toString() == "") {
+                edt_login_pass.setError("password field is required")
             } else{
                 showLoading()
-                authenticateUser(edt_email.text.toString(), edt_pass.text.toString())}
+                authenticateUser(edt_login_username.text.toString(), edt_login_pass.text.toString())}
             }
 
         tv_register.setOnClickListener {
@@ -68,29 +73,31 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                        if (!response.body()!!.status) {
+                        if (response.code() == 502) {
                             hideLoading()
                             Toast.makeText(this@LoginActivity, "Login failed\n" + "email and password doesn't match", Toast.LENGTH_SHORT).show()
                         }
                         else{
-                            if (response.body()!!.admin == 1) {
+                            if (response.body()!!.role == "admin") {
                                 hideLoading()
                                 getSharedPreferences("login", Context.MODE_PRIVATE)
                                         .edit()
-                                        .putString("api_token_admin", response.body()!!.accessToken)
+                                        .putString("admin_token", response.body()!!.loginToken)
+                                        .putString("admin_id", response.body()!!.idMahasiswa)
                                         .apply()
 
                                 intent = Intent(this@LoginActivity, AdminMainActivity::class.java)
-                                Toast.makeText(this@LoginActivity, "${response.body()?.accessToken}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@LoginActivity, "${response.body()?.loginToken}", Toast.LENGTH_SHORT).show()
                                 startActivity(intent)
                             } else {
                                 hideLoading()
                                 getSharedPreferences("login", Context.MODE_PRIVATE)
                                         .edit()
-                                        .putString("api_token", response.body()!!.accessToken)
+                                        .putString("api_token", response.body()!!.loginToken)
+                                        .putString("user_id", response.body()!!.idMahasiswa)
                                         .apply()
                                 intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                Toast.makeText(this@LoginActivity, "${response.body()?.accessToken}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@LoginActivity, "${response.body()?.loginToken}", Toast.LENGTH_SHORT).show()
                                 startActivity(intent)
                             }
                         }

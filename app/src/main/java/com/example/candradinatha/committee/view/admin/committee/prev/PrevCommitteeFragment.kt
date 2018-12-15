@@ -46,10 +46,10 @@ class PrevCommitteeFragment : Fragment(), PrevCommitteeContract.View {
         presenter.getCommittee("0")
     }
 
-    override fun showPrevCommittee(events: List<Committee>) {
+    override fun showPrevCommittee(kegiatan: List<Committee>) {
         sr_prev_committee.isRefreshing = false
         committee.clear()
-        committee.addAll(events)
+        committee.addAll(kegiatan)
         val layoutManager = GridLayoutManager(ctx, 2)
         rv_prev_coommittee.layoutManager = layoutManager
         rv_prev_coommittee.adapter = PrevCommitteeAdapter(committee,{
