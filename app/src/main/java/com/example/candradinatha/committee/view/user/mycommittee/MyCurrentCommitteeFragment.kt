@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,12 +61,9 @@ class MyCurrentCommitteeFragment : Fragment(), MyCommiteeContract.View {
         sr_my_next_committee.isRefreshing = false
         kepanitiaanku.clear()
         kepanitiaanku.addAll(kepanitiaan)
-        val layoutManager = GridLayoutManager(ctx, 2)
+        val layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false)
         rv_my_next_coommittee.layoutManager = layoutManager
         rv_my_next_coommittee.adapter = MyCommitteeAdapter(kepanitiaanku, {
-            val intent = Intent(context, DetailCommitteeUserActivity::class.java)
-            intent.putExtra("idKegiatan", it.idKegiatan)
-            startActivity(intent)
         })
     }
 
@@ -78,7 +76,7 @@ class MyCurrentCommitteeFragment : Fragment(), MyCommiteeContract.View {
     }
 
 
-    private fun getDetail(id: String, namaKegiatan: String, deskripsi: String, tglKegiatan: String, tglRapat: String, status: String){
+    private fun batalkanKegiatan(id: String, namaKegiatan: String, deskripsi: String, tglKegiatan: String, tglRapat: String, status: String){
 
     }
 

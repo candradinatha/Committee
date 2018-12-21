@@ -9,7 +9,6 @@ import com.example.candradinatha.committee.model.Sie
 import kotlinx.android.synthetic.main.list_item_sie_detail_user.view.*
 
 class DetailSieUserAdapter(private val sieKegiatan: List<Sie>, private val listener: (Sie) -> Unit)
-
     : RecyclerView.Adapter<DetailSieUserViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailSieUserViewHolder {
         return DetailSieUserViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_sie_detail_user, parent, false))
