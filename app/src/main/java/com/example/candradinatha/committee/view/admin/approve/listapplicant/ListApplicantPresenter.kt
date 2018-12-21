@@ -35,6 +35,7 @@ class ListApplicantPresenter(val mView: ListApplicantContract.View, val apiServi
                     }
 
                 })
+        compositeDisposable.addAll(disposable)
     }
 
 }

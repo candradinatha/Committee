@@ -68,5 +68,23 @@ data class Kepanitiaan(
 	val fotoMahasiswa: String? = null,
 
 	@field:SerializedName("username")
-	val username: String? = null
+	val username: String? = null,
+
+	@field:SerializedName("tgl_rapat_perdana")
+	val tglRapatPerdana: String? = null,
+
+	@field:SerializedName("foto_kegiatan")
+	val fotoKegiatan: String? = null,
+
+	@field:SerializedName("nama_kegiatan")
+	val namaKegiatan: String? = null,
+
+	@field:SerializedName("deskripsi")
+	val deskripsi: String? = null,
+
+	@field:SerializedName("tgl_kegiatan")
+	val tglKegiatan: String? = null,
+
+	@field:SerializedName("status")
+	val status: String? = null
 )

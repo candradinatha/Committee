@@ -42,7 +42,8 @@
             android:name=".view.admin.approve.listsie.ListSieActivityApprove"
             android:label="@string/title_activity_list_sie_approve"
             android:theme="@style/AppTheme" />
-        <activity android:name=".view.admin.approve.listapplicant.ListApplicantActivity"></activity>
+        <activity android:name=".view.admin.approve.listapplicant.ListApplicantActivity" />
+        <activity android:name=".view.user.committee.DetailCommitteeUserActivity"></activity>
     </application>
 
 </manifest>

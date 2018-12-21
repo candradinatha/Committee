@@ -1,6 +1,7 @@
 package com.example.candradinatha.committee.view.user.committee
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -54,7 +55,9 @@ class UserCommitteeFragment : Fragment(), NextCommitteeContract.View {
         val layoutManager = GridLayoutManager(ctx, 2)
         rv_user_coommittee.layoutManager = layoutManager
         rv_user_coommittee.adapter = PrevCommitteeAdapter(committee, {
-            Toast.makeText(context, it.namaKegiatan, Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, DetailCommitteeUserActivity::class.java)
+            intent.putExtra("idKegiatan", it.idKegiatan)
+            startActivity(intent)
         })
     }
 

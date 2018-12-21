@@ -101,7 +101,7 @@ interface ApiInterface {
 
     @GET("Kepanitiaan")
     fun getMyCommittee(@Query("sts_kegiatan") statusKegiatan:String,
-                       @Query("id_mahasiswa") idMahasiswa:String): Call
+                       @Query("id_mahasiswa") idMahasiswa:String): Flowable<KepanitiaanResponse>
 }
 
 
