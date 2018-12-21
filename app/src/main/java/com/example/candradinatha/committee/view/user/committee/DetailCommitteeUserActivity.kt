@@ -16,6 +16,7 @@ import com.example.candradinatha.committee.adapter.DetailSieUserAdapter
 import com.example.candradinatha.committee.api.ApiClient
 import com.example.candradinatha.committee.api.ApiInterface
 import com.example.candradinatha.committee.model.Committee
+import com.example.candradinatha.committee.model.JoinResponse
 import com.example.candradinatha.committee.model.Sie
 import com.example.candradinatha.committee.utils.AppSchedulerProvider
 import com.example.candradinatha.committee.utils.showIndonesianDateTime
@@ -26,6 +27,10 @@ import kotlinx.android.synthetic.main.activity_detail_committee_user.*
 import kotlinx.android.synthetic.main.input_join.view.*
 import kotlinx.android.synthetic.main.list_item_sie_detail_user.*
 import org.jetbrains.anko.ctx
+import org.jetbrains.anko.support.v4.onRefresh
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class DetailCommitteeUserActivity : AppCompatActivity(), DetailCommitteeContract.View {
@@ -38,6 +43,7 @@ class DetailCommitteeUserActivity : AppCompatActivity(), DetailCommitteeContract
     private var role: String =""
     private var userId: String? = ""
     private var tanggalSekarang: String =""
+    private var idKegiatan: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +59,8 @@ class DetailCommitteeUserActivity : AppCompatActivity(), DetailCommitteeContract
         val intent = intent
         val id = intent.getStringExtra("idKegiatan")
 
+        idKegiatan = id
+
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
@@ -61,6 +69,11 @@ class DetailCommitteeUserActivity : AppCompatActivity(), DetailCommitteeContract
         val mMonth = month + 1
 
         tanggalSekarang = ""+ year + "/" + mMonth + "/" + day
+
+        sr_user_detail_committee.onRefresh {
+            presenter.getSie(id)
+            presenter.getCommittee(id)
+        }
 
         val scheduler = AppSchedulerProvider()
         presenter = DetailCommitteePresenter(this, mService, scheduler)
@@ -116,15 +129,14 @@ class DetailCommitteeUserActivity : AppCompatActivity(), DetailCommitteeContract
 
         val builder = AlertDialog.Builder(this)
         builder.setView(subView)
-        builder.setPositiveButton("Yes"){ dialog, id ->
-                    val namaSie = subView.edt_alasan_daftar.text.toString()
+        builder.setPositiveButton("Daftar"){ dialog, id ->
+                    val alasan = subView.edt_alasan_daftar.text.toString()
 
-//                    joinKegiatan(idMahasiswa,idSie, )
+                    joinKegiatan(idMahasiswa,idSie, tanggalSekarang, alasan)
                 }
-                .setNegativeButton("Cancel") { dialog, id ->
-//                    presenter.getSie(idKegiatan)
+                .setNegativeButton("Batal") { dialog, id ->
+                    presenter.getSie(idKegiatan)
                 }
-        // Create the AlertDialog object and return it
         builder.create().show()
     }
 
@@ -137,8 +149,20 @@ class DetailCommitteeUserActivity : AppCompatActivity(), DetailCommitteeContract
         }
     }
 
-    private fun joinKegiatan() {
+    private fun joinKegiatan(idMahasiswa: String, idSie: String, tanggalSekarang:String, alasan: String) {
+        mService.joinKepanitiaan(idMahasiswa, idSie, tanggalSekarang, alasan)
+                .enqueue(object : Callback<JoinResponse>{
+                    override fun onFailure(call: Call<JoinResponse>, t: Throwable) {
+                        Toast.makeText(this@DetailCommitteeUserActivity, "Ops.. Something went wrong with your internet connection", Toast.LENGTH_SHORT).show()
+                    }
 
+                    override fun onResponse(call: Call<JoinResponse>, response: Response<JoinResponse>) {
+                        if (response.isSuccessful){
+                            Toast.makeText(this@DetailCommitteeUserActivity, "Success", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                })
     }
 
 }

@@ -102,6 +102,17 @@ interface ApiInterface {
     @GET("Kepanitiaan")
     fun getMyCommittee(@Query("sts_kegiatan") statusKegiatan:String,
                        @Query("id_mahasiswa") idMahasiswa:String): Flowable<KepanitiaanResponse>
+
+    @FormUrlEncoded
+    @POST("Kepanitiaan")
+    fun joinKepanitiaan(@Field("id_mahasiswa") idMahasiswa: String,
+                        @Field("id_sie_kegiatan") idSieKegiatan: String,
+                        @Field("tgl_daftar") tglDaftar: String,
+                        @Field("alasan") alasan: String): Call<JoinResponse>
+
+//    pemberitahuan///////
+    @GET("Pemberitahuan")
+    fun getNotificaation(@Query("id") idMahasiswa: String): Flowable<NotificationResponse>
 }
 
 
