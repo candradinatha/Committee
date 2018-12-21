@@ -1,5 +1,6 @@
 package com.example.candradinatha.committee
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -31,20 +32,30 @@ class RegisterActivity : AppCompatActivity() {
         mService = ApiClient.client!!.create(ApiInterface::class.java)
         progressBar = progress_bar
 
+        val pref = App.getInstance().getSharedPreferences("fcm", Context.MODE_PRIVATE)
+        val fcm_token = pref.getString("fcm_token", " ")
+        Toast.makeText(this, fcm_token, Toast.LENGTH_SHORT).show()
+
+        edt_name.setText(fcm_token)
+
         btn_register_submit.setOnClickListener {
             if (edt_name.text.toString() == "")
-                edt_name.setError("name field is required")
+                tl_nama.setError("name field is required")
             else if (edt_nim.text.toString() == "")
-                edt_nim.setError("email field is required")
+                tl_nim.setError("nim field is required")
             else if (edt_pass.text.toString() == "")
-                edt_pass.setError("password field is required")
+                tl_password.setError("password field is required")
             else if (edt_repass.text.toString() == "")
-                edt_repass.setError("password field is required")
-            if (edt_pass.text.toString() != edt_repass.text.toString()) {
-                edt_repass.setError("pass doesn't match")
+                tl_repeat_pass.setError("password field is required")
+            else if (edt_angkatan.text.toString() == "")
+                tl_angkatan.setError("password field is required")
+            else if (edt_username.text.toString() == "")
+                tl_uname.setError("password field is required")
+            else if (edt_pass.text.toString() != edt_repass.text.toString()) {
+                tl_password.setError("pass doesn't match")
             } else {
                 showLoading()
-                createNewUser(edt_name.text.toString(), edt_nim.text.toString(), edt_pass.text.toString())
+                createNewUser("insert", edt_nim.text.toString(), edt_name.text.toString(), edt_angkatan.text.toString(), edt_username.text.toString(), edt_pass.text.toString())
             }
         }
     }
@@ -57,8 +68,8 @@ class RegisterActivity : AppCompatActivity() {
         progressBar.visibility = View.GONE
     }
 
-    private fun createNewUser(name: String, email: String, password: String) {
-        mService.register(name, email, password)
+    private fun createNewUser(role:String, nim: String, nama: String, angkatan: String, username: String, password: String) {
+        mService.register(role, nim, nama, angkatan, username, password)
                 .enqueue(object: Callback<RegisterResponse>{
                     override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                         hideLoading()

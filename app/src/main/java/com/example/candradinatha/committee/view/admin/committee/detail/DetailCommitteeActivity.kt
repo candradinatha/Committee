@@ -18,6 +18,8 @@ import com.example.candradinatha.committee.model.ActivateCommitteeResponse
 import com.example.candradinatha.committee.model.Committee
 import com.example.candradinatha.committee.model.Sie
 import com.example.candradinatha.committee.utils.AppSchedulerProvider
+import com.example.candradinatha.committee.utils.showIndonesianDateTime
+import com.example.candradinatha.committee.utils.toGMTFormat
 import com.example.candradinatha.committee.view.admin.committee.add.AddCommitteePresenter
 import com.example.candradinatha.committee.view.admin.committee.update.UpdateCommitteeActivity
 import kotlinx.android.synthetic.main.activity_detail_committee.*
@@ -41,7 +43,7 @@ class DetailCommitteeActivity : AppCompatActivity(), DetailCommitteeContract.Vie
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_committee)
-        supportActionBar?.title = "Committee Detail"
+        supportActionBar?.title = "Detail Kegiatan"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mService = ApiClient.client!!.create(ApiInterface::class.java)
@@ -133,10 +135,19 @@ class DetailCommitteeActivity : AppCompatActivity(), DetailCommitteeContract.Vie
         committee.clear()
         committee.addAll(kegiatan)
 
+        val tangKegiatan = toGMTFormat(committee.get(0).tglKegiatan)
+        val tangRapat = toGMTFormat(committee.get(0).tglRapatPerdana)
+        val patternDate = "EEEE, dd MMMM yyyy"
+
+        val tanggalKegiatan: String = showIndonesianDateTime(tangKegiatan, patternDate)
+        val tanggalRapat: String = showIndonesianDateTime(tangRapat, patternDate)
+
+
+
         tv_detail_committee_name.text = committee.get(0).namaKegiatan
-        tv_detail_tanggal_rapat.text = committee.get(0).tglRapatPerdana
+        tv_detail_tanggal_rapat.text = tanggalRapat
         tv_detail_deskripsi.text = committee.get(0).deskripsi
-        tv_detail_tanggal_kegiatan.text = committee.get(0).tglKegiatan
+        tv_detail_tanggal_kegiatan.text = tanggalKegiatan
         Glide.with(this).load(committee.get(0).fotoKegiatan).into(iv_committee_detail)
     }
 

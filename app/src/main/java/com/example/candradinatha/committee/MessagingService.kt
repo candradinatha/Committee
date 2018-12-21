@@ -6,11 +6,24 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.support.v4.app.NotificationCompat
+import android.util.Log
 import com.example.candradinatha.committee.view.admin.AdminMainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class MessagingService : FirebaseMessagingService() {
+
+    override fun onNewToken(s: String?) {
+        super.onNewToken(s)
+
+        getSharedPreferences("fcm", Context.MODE_PRIVATE)
+                .edit()
+                .putString("fcm_token", s)
+                .apply()
+
+
+        Log.d("tokenfirebase", s)
+    }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         val message = remoteMessage!!.getNotification()!!.body

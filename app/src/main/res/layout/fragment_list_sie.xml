@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout
-    android:id="@+id/sr_next_committee"
+    android:id="@+id/sr_list_sie_approve"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.admin.committee.next.NextCommitteeFragment">
+    tools:context=".view.admin.approve.listsie.ListSieFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_next_coommittee"
+            android:id="@+id/rv_approve_list_sie"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="?attr/actionBarSize"/>
+            android:layout_height="wrap_content"/>
 
         <ProgressBar
-            android:id="@+id/pb_next_committee"
+            android:id="@+id/pb_approve_list_sie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

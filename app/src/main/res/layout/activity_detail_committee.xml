@@ -21,7 +21,6 @@
                 android:id="@+id/iv_committee_detail"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:src="@drawable/tes"
                 android:scaleType="centerCrop"/>
 
             <LinearLayout
@@ -45,7 +44,7 @@
                         android:layout_height="1dp"
                         android:background="@color/colorAccent"/>
                     <LinearLayout
-                        android:layout_weight="1"
+                        android:layout_weight="1.2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -87,6 +86,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="Tanggal Kegiatan"/>
                     <TextView
                         android:layout_marginTop="8dp"
@@ -101,6 +101,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="Rapat Perdana"/>
 
                     <TextView
@@ -119,8 +120,7 @@
                     android:layout_marginTop="16dp"
                     android:id="@+id/tv_detail_deskripsi"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente voluptatem architecto ea reiciendis ratione blanditiis commodi ullam eos. Natus repellat hic dignissimos nobis voluptas quis nihil odit iusto ipsa porro."/>
+                    android:layout_height="wrap_content"/>
 
                 <LinearLayout
                     android:layout_marginTop="16dp"
@@ -135,7 +135,7 @@
                         android:layout_height="1dp"
                         android:background="@color/colorAccent"/>
                     <LinearLayout
-                        android:layout_weight="1"
+                        android:layout_weight="1.2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">

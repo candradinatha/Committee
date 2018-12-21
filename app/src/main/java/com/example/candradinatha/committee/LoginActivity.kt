@@ -21,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var mService: ApiInterface
     private lateinit var progressBar: ProgressBar
+    var fcm_id: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,11 @@ class LoginActivity : AppCompatActivity() {
             intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        val pref = App.getInstance().getSharedPreferences("fcm", Context.MODE_PRIVATE)
+        val fcm_token = pref.getString("fcm_token", " ")
+        fcm_id = fcm_token
+        Toast.makeText(this, fcm_token, Toast.LENGTH_SHORT).show()
 
 
 
@@ -65,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun authenticateUser(email: String, password: String){
-        mService.login(email, password)
+        mService.login(email, password, fcm_id)
                 .enqueue(object: Callback<LoginResponse> {
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                         hideLoading()

@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiClient {
     companion object {
-        const val baseUrl: String = "http://172.17.100.2/rest_ci/index.php/"
+        const val baseUrl: String = "http://sipantek.gifuto.id/index.php/"
 
 //        10.0.2.2
 //        172.17.100.2

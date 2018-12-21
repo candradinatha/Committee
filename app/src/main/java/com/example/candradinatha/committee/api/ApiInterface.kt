@@ -8,16 +8,21 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiInterface {
+
+//    member ///////////////////////////////////
+//    login
     @FormUrlEncoded
     @POST("Login")
-    fun login(@Field("username") username:String, @Field("password") password:String): Call<LoginResponse>
+    fun login(@Field("username") username:String, @Field("password") password:String, @Field("perangkat") perangkat:String): Call<LoginResponse>
 
+//    register
     @FormUrlEncoded
-    @POST("register")
-    fun register(@Field("name") name:String, @Field("email") email: String, @Field("password") password: String): Call<RegisterResponse>
+    @POST("Member")
+    fun register(@Field("role") role:String, @Field("nim") nim:String, @Field("nama") nama:String, @Field("angkatan") angkatan: String, @Field("username") username:String, @Field("password") password: String): Call<RegisterResponse>
 
-    @GET("details")
-    fun getDetail(): Call<DetailUserResponse>
+//    get user detail
+    @GET("Member")
+    fun getMemberId(@Query("id") idMember: String): Call<MemberResponse>
 
 //    get committee /////////////////////////////////////////
     @GET("Kegiatan")
@@ -85,9 +90,18 @@ interface ApiInterface {
     @POST("SieKegiatan")
     fun deleteSie(@Field("role") role: String, @Field("id") id: String)  : Call<DeleteSieResponse>
 
-    //get member ///////////////////////////////////////////////////
-    @GET("Member")
-    fun getMemberId(@Query("id") idMember: String): Call<MemberResponse>
+//    kepanitiaan ///////////////////////////////////////////////////
+    @GET("Kepanitiaan")
+    fun getKepanitiaan(@Query("id_sie_kegiatan") idSieKegiatan: String): Flowable<KepanitiaanResponse>
+
+    @FormUrlEncoded
+    @PUT("Kepanitiaan")
+    fun deleteKepanitiaan(@Field("role") role: String,
+                          @Field("id") idKepanitiaan: String): Call<CutPanitiaResponse>
+
+    @GET("Kepanitiaan")
+    fun getMyCommittee(@Query("sts_kegiatan") statusKegiatan:String,
+                       @Query("id_mahasiswa") idMahasiswa:String): Call
 }
 
 
