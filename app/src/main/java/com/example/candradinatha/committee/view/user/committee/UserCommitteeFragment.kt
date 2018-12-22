@@ -16,6 +16,7 @@ import com.example.candradinatha.committee.api.ApiClient
 import com.example.candradinatha.committee.api.ApiInterface
 import com.example.candradinatha.committee.model.Committee
 import com.example.candradinatha.committee.utils.AppSchedulerProvider
+import com.example.candradinatha.committee.utils.isNetworkAvailable
 import com.example.candradinatha.committee.view.admin.committee.next.NextCommitteeContract
 import com.example.candradinatha.committee.view.admin.committee.next.NextCommitteePresenter
 import kotlinx.android.synthetic.main.fragment_user_committee.*
@@ -39,13 +40,23 @@ class UserCommitteeFragment : Fragment(), NextCommitteeContract.View {
 
         val apiService = ApiClient.client?.create(ApiInterface::class.java)
 
-        sr_user_committee.onRefresh {
-            presenter.getCommittee("1")
-        }
-
         val scheduler = AppSchedulerProvider()
         presenter = NextCommitteePresenter(this, apiService!!, scheduler)
-        presenter.getCommittee("1")
+
+        sr_user_committee.onRefresh {
+//            if (isNetworkAvailable(context)){
+                presenter.getCommittee("1")
+//            }
+//            else{
+//                getLocalData()
+//            }
+        }
+
+//        if (isNetworkAvailable(context)){
+            presenter.getCommittee("1")
+//        } else{
+//            getLocalData()
+//        }
     }
 
     override fun showPrevCommittee(kegiatan: List<Committee>) {
@@ -60,6 +71,10 @@ class UserCommitteeFragment : Fragment(), NextCommitteeContract.View {
             startActivity(intent)
         })
     }
+
+//    private fun getLocalData(){
+//
+//    }
 
     override fun showloading() {
         pb_user_committee.visibility = View.VISIBLE

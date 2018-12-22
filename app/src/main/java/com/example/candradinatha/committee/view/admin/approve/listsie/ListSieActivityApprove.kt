@@ -1,8 +1,8 @@
 package com.example.candradinatha.committee.view.admin.approve.listsie
 
 import android.os.Bundle
-import android.app.Activity
 import android.content.Intent
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import android.view.View
@@ -17,7 +17,7 @@ import com.example.candradinatha.committee.view.admin.approve.listapplicant.List
 
 import kotlinx.android.synthetic.main.activity_list_sie_approve.*
 
-class ListSieActivityApprove : Activity(), ListSieContract.View {
+class ListSieActivityApprove : AppCompatActivity(), ListSieContract.View {
 
     private lateinit var mService: ApiInterface
     private lateinit var presenter: ListSiePresenter
@@ -26,6 +26,8 @@ class ListSieActivityApprove : Activity(), ListSieContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_sie_approve)
+        supportActionBar?.title = "Daftar Sie"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mService = ApiClient.client!!.create(ApiInterface::class.java)
 

@@ -41,22 +41,59 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"/>
+
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/tv_update_user_username"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"/>
+
                 <TextView
                     android:id="@+id/tv_user_nim"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/tv_update_user_nim"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    />
+
                 <TextView
                     android:id="@+id/tv_user_clear_name"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/tv_update_user_clear_name"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"/>
+
                 <TextView
                     android:id="@+id/tv_user_angkatan"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/tv_update_user_angkatan"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <android.support.design.button.MaterialButton
@@ -67,6 +104,17 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:text="edit info"
+                    android:layout_height="wrap_content" />
+
+                <android.support.design.button.MaterialButton
+                    android:visibility="gone"
+                    android:layout_marginTop="24dp"
+                    android:id="@+id/btn_user_update_info"
+                    android:layout_weight="1"
+                    app:strokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:text="update info"
                     android:layout_height="wrap_content" />
 
                 <android.support.design.button.MaterialButton

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,9 +58,9 @@ class MyPreviousCommitteeFragment : Fragment(), MyCommiteeContract.View {
 
         kepanitiaanku.clear()
         kepanitiaanku.addAll(kepanitiaan)
-        val layoutManager = GridLayoutManager(ctx, 2)
-        rv_my_next_coommittee.layoutManager = layoutManager
-        rv_my_next_coommittee.adapter = MyCommitteeAdapter(kepanitiaanku, {
+        val layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false)
+        rv_my_previous_coommittee.layoutManager = layoutManager
+        rv_my_previous_coommittee.adapter = MyCommitteeAdapter(kepanitiaanku, {
             //            val intent = Intent(context, DetailCommitteeUserActivity::class.java)
 //            intent.putExtra("idKegiatan", it.idKegiatan)
 //            startActivity(intent)

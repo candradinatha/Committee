@@ -28,11 +28,14 @@ class ListApplicantActivity : AppCompatActivity(), ListApplicantContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_applicant)
+        supportActionBar?.title = "Pendaftar"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mService = ApiClient.client!!.create(ApiInterface::class.java)
 
         val intent = intent
         val idSieKegiatan = intent.getStringExtra("idSieKegiatan")
+        Toast.makeText(this, idSieKegiatan, Toast.LENGTH_SHORT).show()
 
         val scheduler = AppSchedulerProvider()
         presenter = ListApplicantPresenter(this, mService, scheduler)

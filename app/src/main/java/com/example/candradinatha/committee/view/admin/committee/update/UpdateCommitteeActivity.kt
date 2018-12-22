@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -14,10 +15,7 @@ import com.example.candradinatha.committee.R
 import com.example.candradinatha.committee.adapter.CreateSieAdapter
 import com.example.candradinatha.committee.api.ApiClient
 import com.example.candradinatha.committee.api.ApiInterface
-import com.example.candradinatha.committee.model.AddCommitteeResponse
-import com.example.candradinatha.committee.model.AddSieResponse
-import com.example.candradinatha.committee.model.DeleteSieResponse
-import com.example.candradinatha.committee.model.Sie
+import com.example.candradinatha.committee.model.*
 import com.example.candradinatha.committee.utils.AppSchedulerProvider
 import com.example.candradinatha.committee.view.admin.committee.add.AddCommitteeContract
 import com.example.candradinatha.committee.view.admin.committee.add.AddCommitteePresenter
@@ -26,7 +24,6 @@ import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_update_committee.*
 import kotlinx.android.synthetic.main.create_new_sie.view.*
-import kotlinx.android.synthetic.main.fragment_add_committee.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -51,6 +48,8 @@ class UpdateCommitteeActivity : AppCompatActivity(), AddCommitteeContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_committee)
+        supportActionBar?.title = "Update Kegiatan"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val intent = intent
         idKegiatan = intent.getStringExtra("id")
@@ -66,6 +65,9 @@ class UpdateCommitteeActivity : AppCompatActivity(), AddCommitteeContract.View {
 
         val scheduler = AppSchedulerProvider()
         presenter = AddCommitteePresenter(this, mService, scheduler)
+        presenter.getSie(idKegiatan!!)
+
+        showCommittee(idKegiatan!!)
 
 //        update image
         btn_update_select_image.setOnClickListener {
@@ -99,7 +101,7 @@ class UpdateCommitteeActivity : AppCompatActivity(), AddCommitteeContract.View {
 
 //        saving all updates
         btn_update_save_all.setOnClickListener {
-            updateCommittee("update", idKegiatan!!, edt_nama_kegiatan.text.toString(), tglKegiatan, tglRapat, edt_deskripsi.text.toString())
+            updateCommittee("update", idKegiatan!!, edt_update_nama_kegiatan.text.toString(), tglKegiatan, tglRapat, edt_update_deskripsi.text.toString())
             val inten = Intent(this, DetailCommitteeActivity::class.java)
             inten.putExtra("id", idKegiatan)
             inten.putExtra("status", status)
@@ -119,7 +121,7 @@ class UpdateCommitteeActivity : AppCompatActivity(), AddCommitteeContract.View {
                 .onResult { result ->
                     result.forEach {
                         path = it.path
-                        Glide.with(this).load(path).into(iv_create_committee)
+                        Glide.with(this).load(path).into(iv_update_committee)
                         Toast.makeText(this, path, Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -274,15 +276,44 @@ class UpdateCommitteeActivity : AppCompatActivity(), AddCommitteeContract.View {
         builder.create().show()
     }
 
+    private fun showCommittee(idKegiatan: String){
+        mService.getCommitteeIdCall(idKegiatan)
+                .enqueue(object : Callback<CommitteeResponse>{
+                    override fun onFailure(call: Call<CommitteeResponse>, t: Throwable) {
+
+                    }
+
+                    override fun onResponse(call: Call<CommitteeResponse>, response: Response<CommitteeResponse>) {
+                        if (response.isSuccessful){
+                            Glide.with(this@UpdateCommitteeActivity).load(response.body()!!.kegiatan.get(0).fotoKegiatan).into(iv_update_committee)
+                            edt_update_nama_kegiatan.setText(response.body()!!.kegiatan.get(0).namaKegiatan)
+                            tv_update_tanggal_kegiatan.setText(response.body()!!.kegiatan.get(0).tglKegiatan)
+                            tv_update_tanggal_rapat.setText(response.body()!!.kegiatan.get(0).tglRapatPerdana)
+                            edt_update_deskripsi.setText(response.body()!!.kegiatan.get(0).deskripsi)
+                        }
+                    }
+
+                })
+    }
+
     override fun showSie(sieKegiatan: List<Sie>) {
         sie.clear()
         sie.addAll(sieKegiatan)
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        rv_list_sie.layoutManager = layoutManager
-        rv_list_sie.adapter = CreateSieAdapter(sieKegiatan,{
+        rv_update_list_sie.layoutManager = layoutManager
+        rv_update_list_sie.adapter = CreateSieAdapter(sieKegiatan,{
             showUpdateSieDialog(it.idSieKegiatan!!, it.idKegiatan!!, it.sie!!, it.jobDesc!!, it.kuota!!, it.namaKoor!!, it.idLineKoor!!)
         },{
             showDeleteSieDialog(it.idSieKegiatan!!, it.sie!!, it.idKegiatan!!)
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return if (item?.itemId == android.R.id.home) {
+            finish()
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
     }
 }

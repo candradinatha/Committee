@@ -24,12 +24,27 @@ interface ApiInterface {
     @GET("Member")
     fun getMemberId(@Query("id") idMember: String): Call<MemberResponse>
 
+//    update user info
+    @Multipart
+    @POST("Member")
+    fun updateProfile(@Part("role") role: RequestBody,
+                      @Part("id") id: RequestBody,
+                      @Part("nim") nim: RequestBody,
+                      @Part("nama") nama: RequestBody,
+                      @Part("angkatan") angkatan: RequestBody,
+                      @Part("username") username: RequestBody,
+                      @Part("password") password: RequestBody,
+                      @Part foto: MultipartBody.Part): Call<MemberResponse>
+
 //    get committee /////////////////////////////////////////
     @GET("Kegiatan")
     fun getCommittee(@Query("sts") sts: String): Flowable<CommitteeResponse>
 
     @GET("Kegiatan")
     fun getCommitteeId(@Query("id") idKegiatan: String): Flowable<CommitteeResponse>
+
+    @GET("Kegiatan")
+    fun getCommitteeIdCall(@Query("id") idKegiatan: String): Call<CommitteeResponse>
 
 //    add committee
     @Multipart

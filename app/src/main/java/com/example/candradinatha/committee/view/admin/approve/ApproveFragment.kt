@@ -17,7 +17,6 @@ import com.example.candradinatha.committee.api.ApiInterface
 import com.example.candradinatha.committee.model.Committee
 import com.example.candradinatha.committee.utils.AppSchedulerProvider
 import com.example.candradinatha.committee.view.admin.approve.listsie.ListSieActivityApprove
-import com.example.candradinatha.committee.view.admin.approve.listsie.ListSieFragment
 import com.example.candradinatha.committee.view.admin.committee.next.NextCommitteeContract
 import com.example.candradinatha.committee.view.admin.committee.next.NextCommitteePresenter
 import kotlinx.android.synthetic.main.fragment_approve.*
